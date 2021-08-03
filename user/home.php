@@ -6,4 +6,4 @@ if(!isLogged()){
     header("Location: /lifebook/index.php");
 }
 
-echo "User Home";
+require "./views/home.view.php";
