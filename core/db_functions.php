@@ -27,3 +27,52 @@ function isLogged()
         return false;
     }
 }
+
+function login_user($email,$password)
+{
+    global $db;
+    $user_password = getUserPassword($email);
+
+    if(!$user_password){
+        return false;
+    }
+
+    if(!password_verify($password,$user_password)){
+        return false;
+    }
+
+    
+    $sql = $db->prepare("SELECT id FROM users WHERE email=? AND password=?");
+    $sql->bind_param("ss",$email,$user_password);
+    $sql->execute();
+
+    if($sql->errno == 0){
+        $result = $sql->get_result();
+        $id = $result->fetch_assoc()['id'];
+        // LOGIN //
+        $_SESSION['id'] = $id;
+        return true;
+
+    }else{
+        header("Location: error.php");
+    }
+
+    
+}
+
+function getUserPassword($email)
+{
+    global $db;
+    $sql = $db->prepare("SELECT password FROM users WHERE email=?");
+    $sql->bind_param("s",$email);
+    $sql->execute();
+
+    $result = $sql->get_result(); // mysql result set
+    if($result->num_rows == 0){
+        return false;
+    }
+    $password = $result->fetch_assoc()['password'];
+
+    return $password;
+
+}
