@@ -1,5 +1,5 @@
 <?php 
-$title = "User home";
+$title = "User account";
 require "../core/init.php";
 
 if(!isLogged()){
@@ -8,4 +8,4 @@ if(!isLogged()){
 
 $user = getUser($_SESSION['id']);
 
-require "./views/home.view.php";
+require "./views/account.view.php";
