@@ -31,9 +31,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $new_password_repeat = $_POST['new_password_repeat'];
     }
 
+    if($_POST['new_password'] !== $_POST['new_password_repeat']){
+        $passwords_not_match = "Passwords do not match";
+        array_push($errors,$passwords_not_match);
+    }
+
     if(count($errors) == 0){
-        if(change_email($email,$user['id'])){
-            header('Location: account.php');
+        if(change_password($password,$new_password,$user)){
+            $success = "Password changed";
         }else{
             $wrong = "Something went wrong";
         }

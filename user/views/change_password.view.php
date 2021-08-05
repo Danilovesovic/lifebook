@@ -21,6 +21,12 @@
                 <?php if(isset($new_password_repeat_error)): ?>
                     <p class="text-danger"><?php echo $new_password_repeat_error ?></p>
                 <?php endif; ?>
+                <?php if(isset($passwords_not_match)): ?>
+                    <p class="text-danger"><?php echo $passwords_not_match ?></p>
+                <?php endif; ?>
+                <?php if(isset($success)): ?>
+                    <p class="text-success"><?php echo $success ?></p>
+                <?php endif; ?>
                
 
                 <button class="btn btn-primary">Change</button>
