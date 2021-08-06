@@ -9,3 +9,4 @@ require "db_post_functions.php";
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
+

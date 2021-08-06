@@ -8,6 +8,8 @@ if(!isLogged()){
 }
 
 $user = getUser($_SESSION['id']);
+$posts = getAllPostsFromUser($user['id']);
+
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $errors = [];

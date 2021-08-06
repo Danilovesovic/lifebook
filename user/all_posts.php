@@ -1,5 +1,5 @@
 <?php 
-$title = "User account";
+$title = "All posts";
 require "../core/init.php";
 
 if(!isLogged()){
@@ -10,4 +10,5 @@ $user = getUser($_SESSION['id']);
 $posts = getAllPostsFromUser($user['id']);
 
 
-require "./views/account.view.php";
+
+require "./views/all_posts.view.php";
