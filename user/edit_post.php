@@ -12,6 +12,7 @@ $id = $_GET['id'];
 $posts = getAllPostsFromUser($user['id']);
 $post = getSinglePost($id);
 
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $errors = [];
   

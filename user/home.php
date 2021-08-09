@@ -2,6 +2,7 @@
 $title = "User home";
 require "../core/init.php";
 
+
 if(!isLogged()){
     header("Location: /lifebook/index.php");
 }
