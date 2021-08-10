@@ -18,6 +18,29 @@
                     <h3 class="text-center"><?php echo $post['title'] ?></h3>
                     <p class="text-center"><?php echo $post['body'] ?> ...</p>
                 </div>
+                <div class="card-footer">
+                    <?php if(isLogged() && !voted($post['id'])): ?>
+                    <a href="voteUp.php?post_id=<?php echo $post['id'] ?>" class="badge bg-primary"><i class="far fa-thumbs-up"></i> <?php echo $likes ?></a>
+                    <?php else: ?>
+                        <span  class="badge bg-primary"><i class="far fa-thumbs-up"></i> <?php echo $likes; ?></span>
+                    <?php endif; ?>
+                </div>
+                <div class="card-footer">
+                    Comments
+                    <form action="new_comment.php" method="post">
+                        <input type="hidden" name="post_id" value="<?php echo $post['id'] ?>">
+                        <textarea name="body"  cols="30" rows="1"class="form-control"></textarea>
+                        <button class="btn btn-primary m-2">Post</button>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="card-header">
+                    <dl>
+                                <dd>Danilo Vesovic</dd>
+                                <dt> dannasda jaksj dlka skjda s</dt>
+                            </dl>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

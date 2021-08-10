@@ -222,3 +222,72 @@ function getAllPublicPostsFromUser($id)
         return false;
     }
 }
+
+function userVoteUp($post_id)
+{
+    global $db;
+    $sql = $db->prepare("INSERT INTO likes (user_id,post_id) VALUES (?,?)");
+    $sql->bind_param('ii',$_SESSION['id'],$post_id);
+    $sql->execute();
+
+    if($sql->errno == 0){
+        return true;
+
+    }else{
+        return false;
+    }
+}
+
+function voted($post_id)
+{
+    global $db;
+    $sql = $db->prepare("SELECT * FROM likes WHERE user_id=? AND post_id=?");
+    $sql->bind_param('ii',$_SESSION['id'],$post_id);
+    $sql->execute();
+
+    if($sql->errno == 0){
+        $result = $sql->get_result();
+        $likes = $result->num_rows;
+
+        if($likes > 0){
+            return true;
+        }else{
+            return false;
+        }
+      
+    }else{
+        header('Location: error.php');
+    }
+}
+
+function getLikes($post_id)
+{
+    global $db;
+    $sql = $db->prepare("SELECT * FROM likes WHERE  post_id=?");
+    $sql->bind_param('i',$post_id);
+    $sql->execute();
+
+    if($sql->errno == 0){
+        $result = $sql->get_result();
+        $likes = $result->num_rows;
+        return $likes;
+      
+    }else{
+        header('Location: error.php');
+    }
+}
+
+function userComment($post_id,$body)
+{
+    global $db;
+    $sql = $db->prepare("INSERT INTO comments (user_id,post_id,body) VALUES (?,?,?)");
+    $sql->bind_param('iis',$_SESSION['id'],$post_id,$body);
+    $sql->execute();
+
+    if($sql->errno == 0){
+        return true;
+      
+    }else{
+        return false;
+    }
+}
