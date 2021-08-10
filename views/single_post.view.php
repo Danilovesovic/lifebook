@@ -25,6 +25,7 @@
                         <span  class="badge bg-primary"><i class="far fa-thumbs-up"></i> <?php echo $likes; ?></span>
                     <?php endif; ?>
                 </div>
+                <?php if(isLogged()): ?>
                 <div class="card-footer">
                     Comments
                     <form action="new_comment.php" method="post">
@@ -33,13 +34,16 @@
                         <button class="btn btn-primary m-2">Post</button>
                     </form>
                 </div>
+                <?php endif; ?>
                 <div class="card-footer">
+                    <?php foreach($comments as $comment): ?>
                     <div class="card-header">
-                    <dl>
-                                <dd>Danilo Vesovic</dd>
-                                <dt> dannasda jaksj dlka skjda s</dt>
-                            </dl>
+                        <dl>
+                            <dd><?php echo $comment['first_name'] ?></dd>
+                            <dt> <?php echo $comment['body'] ?></dt>
+                        </dl>
                     </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
